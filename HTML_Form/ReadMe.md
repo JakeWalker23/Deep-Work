@@ -10,7 +10,7 @@ Form submits {
 
 #### Dependencies:
 
-Run npm install to update files
+    Run npm install to update files
 
 Node
 Mongo
@@ -20,7 +20,7 @@ Path
 
 #### How to run:
 
- node app.js
+    node app.js
 
     DB runs on localhost:27017/
 
