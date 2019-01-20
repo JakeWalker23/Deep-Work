@@ -1,4 +1,4 @@
-<h1 style="text-align: center"> HTML Form submission to a mongo DB. </h1>
+<h1 style="text-align: center"> HTML Form to Mongo DB. </h1>
  
 Form submits {
             Name:
@@ -20,3 +20,6 @@ Dependencies: Node
 DB runs on localhost:27017/
 
 App runs on Port 3000;
+
+
+Currently not working! Please feel free to give feedback
