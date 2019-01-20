@@ -1,5 +1,5 @@
-## HTML Form submission to a mongo DB.
-
+<h1 style="text-align: center"> HTML Form submission to a mongo DB. </h1>
+ 
 Form submits {
             Name:
             Surname:
@@ -9,11 +9,11 @@ Form submits {
             }
 
 
-Dependencies: 1 Node
-              2 Mongo
-              3 Express
-              4 body-parser
-              5 path 
+Dependencies: Node
+              Mongo
+              Express
+              Body-parser
+              Path 
 
 
 
