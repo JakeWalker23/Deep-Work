@@ -1,4 +1,4 @@
-# H1 HTML Form submission to a mongo DB.
+## HTML Form submission to a mongo DB.
 
 Form submits {
             Name:
@@ -9,11 +9,11 @@ Form submits {
             }
 
 
-Dependencies: Node
-              Mongo
-              Express
-              body-parser
-              path 
+Dependencies: 1 Node
+              2 Mongo
+              3 Express
+              4 body-parser
+              5 path 
 
 
 
