@@ -12,17 +12,19 @@ Form submits {
 
 Run npm install to update files
 
-Dependencies: Node
-              Mongo
-              Express
-              Body-parser
-              Path 
+Node
+Mongo
+Express
+Body-parser
+Path 
 
+#### How to run:
 
+ node app.js
 
-DB runs on localhost:27017/
+    DB runs on localhost:27017/
 
-App runs on Port 3000;
+    App runs on Port 3000;
 
 
 Currently not working! Please feel free to give feedback
