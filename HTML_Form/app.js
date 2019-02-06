@@ -1,61 +1,70 @@
 // Store the form data in the mongo db
 
-const mongo = require('mongodb').MongoClient;
+const {
+    MongoClient
+} = require('mongodb');
 const express = require('express')
 const bodyParser = require('body-parser');
-const path = require("path");
 
-//var url = "mongodb://localhost:27017/";
+// Initialise client
+const client = new MongoClient("mongodb://localhost:27017");
 
-var dbConn = mongo.connect('mongodb://localhost:27017').MongoClient;
+// define global var for db
+let db
+
+// connect to database
+client.connect()
+    .then(conn => {
+        // assign database connection to db
+        db = conn.db("deep-work")
+    })
+    .catch(err => {
+        // log error and exit if connection fails
+        console.error(err)
+        process.exit()
+    })
+
 
 var app = express()
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+// Serve files from public folder on '/'
+app.use(express.static('public'));
 
 
-app.use(express.static('form.html'));
-
-
-app.post('/post-feedback', function(req, res) {
-    dbConn.then(function(db) {
-        delete req.body._id;
-        db.collection('FormObject'.insertOne(req.body))
-    });
-    res.send('Data received:\n' + JSON.stringify(req.body));
-    console.log("Form has sent");
+app.post('/post-feedback', function (req, res) {
+    // insert received body into FormObjet collection
+    db.collection('FormObject').insertOne(req.body)
+        .then(() => {
+            // Send back successful response
+            res.status(200).send("Thank you for submitting")
+        })
+        .catch(err => {
+            // log error and send back internal server error with message
+            console.error(err)
+            res.status(500).send("Something has gone wrong")
+        })
 });
 
-app.get('/view-feedback', function(req, res) {
-    dbConn.then(function() {
-        db.collection('FormObject').find({}).toArray().then(function(feedback) {
-            res.status(200).json(feedback)
-            console.log("Form received");
-        });
+// I have left this untouched
+// you will likely want to make another endpoint before working on this one 
+// you will want an endpoint to get all of the feedback objects
+// you haven't really gotten a way to handle requesting this on the frontend though
+// you have two options really regarding that 
+// 1. Return full HTML page with data in int. 
+//    look into a server rendered templating setup, like handlebars 
+// 2. Return JSON this will need a HTML page with some js to make the request 
+//    then render elements once the data is received
+
+app.get('/view-feedback', function (req, res) {
+    db.collection('FormObject').find({}).toArray().then(function (feedback) {
+        res.status(200).json(feedback)
+        console.log("Form received");
     });
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP);
-
-
-// connect to the database
-/*mongo.connect(url, function(err, db) {
-    if (err) throw err;
-
-    var dbo = db.db("FormData")
-
-    var formObject = {name: "Jake", surname: "Walker", age: 25, email: "jakewalk93@hotmail.com"}
-
-    dbo.collection("FormObject").insertOne(formObject, function(err, res) {
-        if (err) throw err
-
-        console.log("Big shack entered the DB");
-
-        db.close();
-    })
-}); 
-
-// test in the terminal whether this database is running
-
-*/
