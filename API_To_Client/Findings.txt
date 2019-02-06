@@ -1,0 +1,96 @@
+DEPENDANCIES:
+
+NODE
+HTML
+CSS
+JAVASCRIPT
+
+                                DAY 1: BEFORE
+
+Judging from a sneak peak on the project before I started my idea is that I will be querying an API, returning a json response and basically foreaching each item in the json response into a appended DOM 
+structure. 
+
+DAY 1: AFTER
+
+The api is: https://ghibliapi.herokuapp.com/films and returns aload of japanese films 
+
+I also want this to be responsive so I guess media queries will be used.
+
+the api returns an array of objects, each looking like this. as you can see you get an id, title, description, director, etc.. 
+
+ {
+        "id": "1b67aa9a-2e4a-45af-ac98-64d6ad15b16c",
+        "title": "Pom Poko",
+        "description": "As the human city development encroaches on the raccoon population's forest and meadow habitat, the raccoons find themselves faced with the very real possibility of extinction. In response, the raccoons engage in a desperate struggle to stop the construction and preserve their home.",
+        "director": "Isao Takahata",
+        "producer": "Toshio Suzuki",
+        "release_date": "1994",
+        "rt_score": "78",
+        "people": [
+            "https://ghibliapi.herokuapp.com/people/"
+        ],
+        "species": [
+            "https://ghibliapi.herokuapp.com/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2"
+        ],
+        "locations": [
+            "https://ghibliapi.herokuapp.com/locations/"
+        ],
+        "vehicles": [
+            "https://ghibliapi.herokuapp.com/vehicles/"
+        ],
+        "url": "https://ghibliapi.herokuapp.com/films/1b67aa9a-2e4a-45af-ac98-64d6ad15b16c"
+    }
+
+DAY 2: BEFORE
+
+I found the XMLHttpRequest is not like node that can be ran in the terminal for a response.
+Instead it just runs from the client browser, so debugging has to be done in the console.
+
+Fetch perhaps will be a newer standard to use, however lets start with basics and do XMLHttpRequest.
+
+DAY 2: AFTER
+
+My findings are as follows:
+
+    XMLHttpRequest is a client browser response. You can then access this via JSON(this.response) saving to a variable
+    
+    You can then forEach the data variable, and create each card via a DOM appendment, for Example,
+    request.onload = function() {
+        
+        let data = JSON(this.response)
+
+        data.forEach(movie => {
+            // DOM elements appended here
+        })
+    }
+
+    This means you are making the HTML on the fly, dependant on the JSON response. This is a nice way but I will check with 
+    Billy to see if this is the optimmial/modern way.
+
+    Querying the API is actually quite easy, displaying to the DOM is relatively easy,
+    the skill comes from styling the CSS! Styling the cards for a nice format was not immediately obvious,
+    here I used a media query to format them. Added with some linear background they look alright.
+    A card format is likely to be  a nice skill so would be nice to practice this in future projects.
+
+    A notable finding from this is the manipulation of the DOM and appendment of the children using ____.append(___)
+    This was present in the first appending of the container div into the root element. I think this is a nice way to structure
+    later projects as it is relatively intuitive. Then append each card to the container which I guess is good practice for CSS.
+
+    [[-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;]]  have a look into these and see what they do.
+
+    <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" /> Also this was used to bypass CORS in the browser for cross site scripting. Ask Billy what it means haha.
+
+    @media screen and (min-width: 600px) {     Also worth looking into media querys as they are really useful.
+    .card {
+    flex: 1 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card {
+    flex: 1 1 calc(33% - 2rem);
+    }
+}  
+
+NEXT: More api projects to practice practice practice. Use RapidAPI for free ones.
