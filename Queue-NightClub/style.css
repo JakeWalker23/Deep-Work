@@ -1,0 +1,105 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; 
+}
+
+/* Set some funky disco colors: Purple etc */
+.title-box {
+    color: #990089;
+    font-family: 'Lobster', cursive;
+    display: flex;
+    line-height: 1.6rem;
+    margin: 40px;
+}
+
+.club-title {
+    justify-content: center;
+}
+
+.disco-ball {
+    align-items: center;
+    margin-left: 15px;
+    animation: flip 1s linear infinite;
+} 
+
+.capacity {
+    color: #990089;
+    font-size: 1em;
+    display: flex;
+    font-family: 'Lobster Two', cursive;
+}
+
+.club-capacity {
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+.current-capacity {
+    margin-top: -10px;
+    margin-left: 20px;
+}  
+
+.queue-output {
+    margin: 35px;
+    padding-left: 20px;
+}
+
+#queueContents  {
+    color: green;
+    padding-left: -25px;
+}
+
+.form {
+    display: inline-block;
+}
+
+.update-btn {
+    margin: 20px;
+    color: #FFF;
+    background-color: #990089;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 30px;
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "lobster";
+    display: inline-block;
+}
+
+.remove-btn {
+    margin-left: 20px;
+    margin: 20px;
+    color: #FFF;
+    background-color: #990089;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 30px;
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "lobster";
+}
+
+.update-field {
+    margin-left: 20px;
+    height: 30px;
+    display: inline-block;
+}
+
+.remove-field {
+    margin-left: 20px;
+    height: 30px;
+}
+
+@keyframes flip {
+    50% {
+     transform: scaleX(-1); 
+    }
+   
+   100% { 
+   transform: scaleX(1);}
+ }

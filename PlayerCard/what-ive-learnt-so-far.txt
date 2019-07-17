@@ -1,0 +1,41 @@
+A * {background: ____} will overwrite all background colors. So dont put it here.
+
+Flexbox needs a container to display: flex on.
+
+API-container is done. Its just a empty container for our cards that then has flexbox applied to it. Nothing else in this case 
+
+Line height is a thing. And CSS has a property for that. line-height: __. 1.6 rem is being used. Must be significant.
+
+Font-family: dosis (Or potentially others for that matter.) changes the spacing, width and height of the font and therefore the space 
+it takes in the div. Dont forget the box is only the size of the content. 
+
+-webkit-font-smoothing: antialiased: Only works on mac which isnt of much use, however I have learnt about what it is.
+It is used when rendering fonts to smooth their appearence on crap devices. (Again, only used in mac os)
+
+--- See definition --- : antialiased - Smooth the font on the level of the pixel, as opposed to the subpixel. Switching from subpixel rendering to antialiasing for light text on dark backgrounds makes it look lighter.
+
+The h1 has a background-image applied to it. This then has a linear-gradient function, which takes 3 parameters.
+First parameter is the angle in which the color is pointing. Here it is 120Deg which has all sorts of lines pointing on the documentation.
+The 2nd and 3rd parameter (that is used) is used to define the starting and ending colours. Pink & Blue.
+
+It seems that linear-gradient() 0 degrees is 50-50 fade horizontally. So 120 deg is top left? 
+
+Possibly thinking of css cards like drawing a physical outline of a card is not the right mental model for how it is actually built
+So far it looks like things are styled more like BOXES believe it or not! [[      ]     [       ]]
+
+Overflow: hidden seems to be for the p text.
+
+Long text makes a difference. Content first then style seems to be a good idea.
+
+Obviously each application of a class is a separate instance and therefore there need to be multiple in the container.
+
+Is 1.5 rem a standard? typography is comimg. 
+
+Nothing to do with building a single card in the end. The container was basically split on a percentage of 100 (33% so 3 are present at a certain pixel width.)
+It was styled by the content rather than solid containers. 
+
+Learnt alot today. Thank you to the lord and saviour Jesus Christ who improves me everyday. 
+I know my CSS needs to improve, but I am confident in the Lords wisdom that it will rub off on me. 
+
+Faith is belief.
+

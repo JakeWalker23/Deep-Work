@@ -1,0 +1,27 @@
+So far: 
+
+Implemented a simple Queue Class
+
+Added basic markup for UI.
+
+To Do:
+
+Style everything so its nice and positioned nicely.
+
+Add buttons that dynamically affect the Queue. (In JS)
+
+Add responsiveness (IF time)
+
+Still to do:
+
+Each member of the Queue is a party of that amount. i.e 4 is a group of 4 and therefore should update the total as such. 
+
+Bit of defensive programming to error handle.
+
+* Error handle the add button, so that a value must be present.
+
+* Music playing when the club has 1 person. Stop when club is empty.
+
+If Current capaity > club capacity, club is full
+    Therefore you cant add more people untill they are removed. 
+

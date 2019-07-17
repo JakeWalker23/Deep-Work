@@ -1,43 +1,41 @@
 // find the DOM elements 
 const app = document.getElementById('root');
-const container = document.createElement('div');
+const apiContainer = document.createElement('div');
 
-// append the container to the root div.
-container.setAttribute("class", "container");
-app.appendChild(container);
+// make a class for the container
+apiContainer.setAttribute("class", "apiContainer");
 
-// new clientside XMLHttpRequest
-let request = new XMLHttpRequest();
+// put the container in the app
+app.appendChild(apiContainer);
 
-// set the paramaters for the request. METHOD, URL, True
-request.open("GET", "https://ghibliapi.herokuapp.com/films", true);
+// new clientside XMLHttpRequest call
+let apiRequest = new XMLHttpRequest();
 
-// onLoad, forEach all this data into the DOM
-request.onload = function() {
-    console.log("script is working");
-    var data = JSON.parse(this.response);
+// open the request with the paramaters METHOD, URL, (True)
+apiRequest.open("GET", "https://ghibliapi.herokuapp.com/films", true);
+apiRequest.onload = function() {
 
-        data.forEach(data => {
-            // make a card for each data element from the API
-            const card = document.createElement('div');
-            card.setAttribute('class', 'card');
-            
-            // append each card into the container
-            container.appendChild(card);
-            const h1 = document.createElement('h1')
-            h1.textContent = data.title;
-            
-            const p = document.createElement('p');
-            p.textContent = data.description;           
-            
-            card.appendChild(h1);
-            card.appendChild(p);
+var apiData = JSON.parse(this.response);
+    apiData.forEach(data => {
 
-
-
-
-        })
+// make a card for each data element from the API
+    const apiCard = document.createElement('div');
+          apiCard.setAttribute('class', 'apiCard');
+    
+// append each card into the container
+          apiContainer.appendChild(apiCard);
+    const apiHeader = document.createElement('h1')
+          apiHeader.textContent = data.title;
+    
+// card text from api
+    const apiText = document.createElement('p');
+          apiText.textContent = data.description;           
+    
+//append data to card
+    apiCard.appendChild(apiHeader);
+    apiCard.appendChild(apiText);
+    })
 }
 
-// send request to the server
-request.send()
+// GO.
+apiRequest.send()
