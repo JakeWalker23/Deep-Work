@@ -2,16 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Queue Nightclub</title>
-
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Lobster+Two&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two&display=swap" rel="stylesheet">
-    
-    <script src="Queue.js" type="text/javascript"></script>
+        <script src="Queue.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="title-box">
@@ -21,106 +16,64 @@
     <div class="capacity">
         <audio id="music" src="Assets/50Cent.mp3" type="mp3"></audio>
         <h3 class="club-capacity">Club capacity: <span id="Capacity-Variable" value=130>10</span> </h3>
-
-        <!--Need to dynamically insert the length of the Queue here.-->
         <h3 class="current-capacity">Current capacity: <span id="currentCapacity">0</span> </h3>
     </div>
-
-    <div class="queue-output" id="queueContents">
-        <p>Hello Queue Output </p>
-    </div>
-
-<!--Added buttons through html now. Seems to work better for updating the Queue-->
+    <div class="queue-output" id="queueContents"></div>
     <form class="form">
         <input id="updateField" type="input" class="update-field"></input>
         <input onclick="updateQueue()" id="updateBtn" type="button" value="Add" class="update-btn"></input>
             <br>  
         <input id="removeField" type="input"  class="remove-field"></input>
-        <input onclick="removeQueue()"id="removeBtn" type="button" value="Remove" class="remove-btn"></input>
+        <input onclick="removeQueue()" id="removeBtn" type="button" value="Remove" class="remove-btn"></input>
     </form>
+<script>
+let q = new Queue();
+    q.add(3);
 
-<!--Adding the queue here because don't know how to import from a file.-->
+let music = document.getElementById("music");
+    music.play();
 
-<!--Needs a good refactor as you can tell.-->
-    <script>
-    // This should be in main.js! 
-        let q = new Queue();
-        q.add(3);
-        q.add(100);        
+function displayQueue() {
+let queueContents = document.getElementById("queueContents");
+    queueContents.innerHTML = q.show();
+    queueContents.style.fontSize = "25px";
+}
+displayQueue();
 
-        // Display the Queue
-        function displayQueue() {
-            let queueContents = document.getElementById("queueContents");
-                queueContents.innerHTML = q.show();
-                queueContents.style.fontSize = "25px";
-        }
+function addQueue(value) {
+    q.add(value)
+}
 
-        displayQueue();
+function removeQueue(value) {
+    q.remove();
+}        
 
-    // Add to the Queue
-        function addQueue(value) {
-            q.add(value)
-        }
+// Add the buttons value of the input to the Queue on click
+updateBtn.addEventListener("click", function() {
+    let val = document.getElementById("updateField").value
+        if (val == null) return false;          
+    q.add(val);
+    document.getElementById("updateField").value = 0;
+    capacityVariable = document.getElementById("Capacity-Variable").innerHTML;
+let numericalCapacityVariable = parseInt(capacityVariable);
+})
 
-    // Remove from the Queue
-        function removeQueue(value) {
-            q.remove(value);
-        }        
+// Display the current capacity to the DOM
+function currentCapacity() {
+let currentCapacity = document.getElementById("currentCapacity");
+    currentCapacity.innerHTML = q.size()
+    currentCapacity.style.fontFamily = "Lobster";
+}
+currentCapacity();
 
-    // Add the buttons value of the input to the Queue on click
-        updateBtn.addEventListener("click", function() {
-            let val = document.getElementById("updateField").value
-            console.log(val);
-            if (val == 0) return false;          
-            q.add(val);   
-            document.getElementById("updateField").value = 0;
+// Update the Queue and Capacity every .1s 
+    setInterval(currentCapacity, 100)
+    setInterval(displayQueue, 100)
 
-            capacityVariable = document.getElementById("Capacity-Variable").innerHTML;
-            let numericalCapacityVariable = parseInt(capacityVariable);
-                if (q.size >= numericalCapacityVariable) return false; 
-            })
-
-    // Remove the buttons value of the input to the Queue on click
-        removeBtn.addEventListener("click", function() {
-            removeQueue();
-            document.getElementById("removeField").value = 0;
-            //console.log(q);
-        })
-
-    // Display the current capacity to the DOM
-        function currentCapacity() {
-            let currentCapacity = document.getElementById("currentCapacity");
-                currentCapacity.innerHTML = q.size()
-                currentCapacity.style.fontFamily = "Lobster";
-        }
-
-        currentCapacity();
-
-    // Update the current capacity of the DOM everytime the Queue size is changed.
-        function updateCapacity() {
-            setInterval(currentCapacity, 100)
-        }
-
-        updateCapacity()
-
-    // Update the Queue on screen everytime the size changes.
-        function updateQueue() {
-            setInterval(displayQueue, 100)
-        }
-
-        updateQueue()
-
-        function playMusic() {
-            let music = document.getElementById("music");
-            music.play();
-        }
-
-        playMusic();
-
-    // sets the value to 0 after an button click
-        window.addEventListener("input" , function(e) {
-            e.target.value = parseFloat(e.target.value) || 0;
-        });  
+// sets the value to 0 after an button click
+window.addEventListener("input" , function(e) {
+    e.target.value = parseFloat(e.target.value) || 0;
+});  
         </script>
     </body>
 </html>
